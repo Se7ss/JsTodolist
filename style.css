@@ -12,7 +12,8 @@ body {
 }
 
 header {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  padding: 1rem;
 }
 
 header,
@@ -21,4 +22,79 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border: none;
+  background: white;
+}
+
+form button {
+  color: #d88771;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background: #d88771;
+  color: white;
+}
+
+.todo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-list {
+  min-width: 30%;
+  list-style: none;
+}
+.todo {
+  display: flex;
+  background: white;
+  margin: 5px;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+.todo-item {
+  color: black;
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.checked-button:hover,
+.delete-button:hover {
+  background: #d88771;
+  border: none;
+  font-size: 1rem;
+  color: white;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.checked-button,
+.delete-button {
+  background: white;
+  border: none;
+  font-size: 1.5rem;
+  color: #d88771;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fa-trash,
+.fa-check {
+  pointer-events: none;
+}
+
+.todo-completed {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
