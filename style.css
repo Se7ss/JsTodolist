@@ -18,7 +18,7 @@ header {
 
 header,
 form {
-  min-height: 20vh;
+  min-height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +27,7 @@ form {
 form input,
 form button {
   padding: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   border: none;
   background: white;
 }
@@ -51,13 +51,14 @@ form button:hover {
 }
 
 .todo-list {
-  min-width: 30%;
+  min-width: 40%;
   list-style: none;
 }
 .todo {
   display: flex;
   background: white;
-  margin: 5px;
+  margin: 0.5rem;
+  /* padding: 2px; */
   justify-content: space-between;
   align-items: center;
   transition: all 0.5s ease;
@@ -82,7 +83,7 @@ form button:hover {
 .delete-button {
   background: white;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #d88771;
   padding: 0.5rem;
   cursor: pointer;
@@ -97,4 +98,9 @@ form button:hover {
 .todo-completed {
   text-decoration: line-through;
   opacity: 0.5;
+}
+
+.animate-delete {
+  transform: translateY(8rem) rotateZ(20deg);
+  opacity: 0;
 }

@@ -40,12 +40,19 @@ function addTodo(event) {
 
 function checkDelete(e) {
 
-    console.log(e.target)
-    console.log(e.target.classList.value)
+    // console.log(e.target)
+    // console.log(e.target.classList.value)
 
     if (e.target.classList[0] === 'delete-button') {
 
-        e.target.parentElement.remove();
+        e.target.parentElement.classList.add('animate-delete');
+
+        //wait for animation 
+        e.target.parentElement.addEventListener('transitionend', function () {
+            // console.log('remove' + e.target.parentElement)
+            e.target.parentElement.remove();
+        })
+
     }
     if (e.target.classList[0] === 'checked-button') {
 
