@@ -23,20 +23,22 @@
     <header>
       <h1>Jacks Todo List</h1>
     </header>
+
     <form>
       <input type="text" name="" id="" class="todo-input" />
       <button class="todo-button" type="submit">
         <i class="fas fa-plus-square"></i>
       </button>
+      <div class="select">
+        <select name="todos" class="filter-todo">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="uncompleted">uncompleted</option>
+        </select>
+      </div>
     </form>
     <div class="todo-container">
-      <ul class="todo-list">
-        <!-- <div class="todo">
-              <li class="todo-item"></li>
-              <button class='checked-button'></button>
-              <button class='trashbutton'><i></i></button>
-            </div> -->
-      </ul>
+      <ul class="todo-list"></ul>
     </div>
     <script src="app.js"></script>
   </body>
