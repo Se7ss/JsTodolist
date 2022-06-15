@@ -6,7 +6,7 @@ const todoSelect = document.querySelector('.todo-select');
 
 
 //EVENT LISTENERS
-
+document.addEventListener('DOMContentLoaded', getTodos)
 addButton.addEventListener('click', addToList);
 todoList.addEventListener('click', checkDelete);
 todoSelect.addEventListener('click', filterOption);
@@ -37,6 +37,7 @@ function addToList(e) {
     todoDiv.append(todoItem, todoCheckedButton, todoTrashedButton);
     // console.log(todoDiv);
     todoList.appendChild(todoDiv);
+    saveToDisk(todoInput.value);
 
     todoInput.value = ''
 
@@ -63,6 +64,7 @@ function checkDelete(e) {
         e.target.parentElement.addEventListener('transitionend', function () {
 
             e.target.parentElement.remove()
+            deleteFromDisk(e.target.parentElement)
 
         })
 
@@ -74,9 +76,7 @@ function checkDelete(e) {
 
 function filterOption(e) {
 
-    console.log(todoList);
-
-
+    // console.log(todoList);
 
 
     let todos = todoList.childNodes
@@ -120,3 +120,90 @@ function filterOption(e) {
 }
 
 
+function saveToDisk(todo) {
+
+    // Check browser support
+    if (typeof (Storage) !== "undefined") {
+        //check if we already have todos saved in storage 
+        let todos;
+        if (localStorage.getItem("todos") == null) {
+            todos = [];
+        } else {
+            todos = JSON.parse(localStorage.getItem("todos"));
+        }
+
+        todos.push(todo);
+        localStorage.setItem("todos", JSON.stringify(todos));
+
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+    }
+
+
+}
+
+function getTodos() {
+
+    let todos;
+
+    if (localStorage.getItem("todos") == null) {
+
+
+        todos = [];
+
+
+    } else {
+
+        todos = JSON.parse(localStorage.getItem("todos"));
+
+        todos.forEach(function (todo) {
+
+            const todoDiv = document.createElement('div');
+            todoDiv.classList.add('todo');
+            todoItem = document.createElement('li');
+            todoItem.classList.add('todo-item');
+            todoItem.innerText = todo;
+
+            const todoCheckedButton = document.createElement('button');
+            const todoTrashedButton = document.createElement('button');
+            todoCheckedButton.innerHTML = '<i class="fa-solid fa-check"></i>'
+            todoTrashedButton.innerHTML = '<i class="fa-solid fa-trash"></i>'
+
+            todoCheckedButton.classList.add('checked-button');
+            todoTrashedButton.classList.add('trashed-button');
+
+            todoDiv.append(todoItem, todoCheckedButton, todoTrashedButton);
+            // console.log(todoDiv);
+            todoList.appendChild(todoDiv);
+
+
+        })
+
+
+    }
+
+}
+
+
+
+function deleteFromDisk(todo) {
+
+
+    let toRemove = todo.firstChild.innerHTML;
+
+    let todos = JSON.parse(localStorage.getItem("todos"));
+
+    todos.forEach(function (todo, i = 0) {
+
+        // console.log(todo + ` ${i}`);
+
+        if (todo === toRemove) {
+            todos.splice(i, 1);
+        }
+        i++;
+    })
+
+    localStorage.setItem("todos", JSON.stringify(todos));
+
+
+}
